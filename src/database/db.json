@@ -13,6 +13,13 @@
       "apellido": "Punch",
       "puntaje": "86",
       "habilidad": "Super puño"
+    },
+    {
+      "id": "c531d0bb-6e58-4611-9516-09f93db5e6fa",
+      "nombre": "Bruno",
+      "apellido": "Pie",
+      "puntaje": "82",
+      "habilidad": "Super patada"
     }
   ]
 }

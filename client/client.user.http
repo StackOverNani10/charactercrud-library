@@ -2,7 +2,7 @@ POST http://localhost:3000/api/v1/characters
 Content-Type: application/json
 
 {
-    "nombre": "Buno",
+    "nombre": "Bno",
     "apellido": "Pie",
     "puntaje": "82",
     "habilidad": "Super patada"
@@ -20,4 +20,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/api/v1/characters/28c44008-b49c-460f-b0d7-58dc3fd3af23
+DELETE http://localhost:3000/api/v1/characters/6b86332a-d7bc-4bb9-bc24-72f8fce7572b1

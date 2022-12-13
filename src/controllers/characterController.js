@@ -1,4 +1,5 @@
 const characterService = require("../services/characterService");
+const isGood = require("succes-character-create");
 
 const getAllCharacters = (req, res) => {
     const allCharacters = characterService.getAllCharacters();
@@ -22,12 +23,14 @@ const createNewCharacter = (req, res) => {
     const { body } = req;
 
     if (
-      !body.nombre || 
-      !body.apellido || 
-      !body.puntaje || 
-      !body.habilidad
+        !body.nombre || 
+        !body.apellido || 
+        !body.puntaje || 
+        !body.habilidad
     ) {
-      return;
+        const result = isGood("No Ok");
+        res.send({ status: "No OK", result });
+        return;
     }
 
     const newCharacter = {
@@ -38,7 +41,8 @@ const createNewCharacter = (req, res) => {
     };
 
     const createdCharacter = characterService.createNewCharacter(newCharacter);
-    res.status(201).send({ status: "OK", data: createdCharacter });
+    const result = isGood("OK");
+    res.status(201).send({ status: "OK", result, data: createdCharacter });
 };
 
 const updateOneCharacter = (req, res) => {
