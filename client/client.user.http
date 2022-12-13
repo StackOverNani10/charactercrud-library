@@ -1,0 +1,23 @@
+POST http://localhost:3000/api/v1/characters
+Content-Type: application/json
+
+{
+    "nombre": "Buno",
+    "apellido": "Pie",
+    "puntaje": "82",
+    "habilidad": "Super patada"
+}
+
+###
+GET http://localhost:3000/api/v1/characters
+
+###
+PATCH  http://localhost:3000/api/v1/characters/se721r77-98yf-x910-9bx2-8cb0x1x9083v
+Content-Type: application/json
+
+{
+    "nombre": "Herald"
+}
+
+###
+DELETE http://localhost:3000/api/v1/characters/28c44008-b49c-460f-b0d7-58dc3fd3af23

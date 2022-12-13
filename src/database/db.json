@@ -1,0 +1,18 @@
+{
+  "characters": [
+    {
+      "id": "se721r77-98yf-x910-9bx2-8cb0x1x9083v",
+      "nombre": "Herald",
+      "apellido": "Jumping",
+      "puntaje": "88",
+      "habilidad": "Super Salto"
+    },
+    {
+      "id": "se721r77-98yf-x910-9bx2-8cb0x1x9083v",
+      "nombre": "Marcus",
+      "apellido": "Punch",
+      "puntaje": "86",
+      "habilidad": "Super puño"
+    }
+  ]
+}
