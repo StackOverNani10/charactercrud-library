@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "run": "node ./client/test.js",
+    "start": "node ./client/test.js",
     "dev": "nodemon ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "prompt-sync": "^4.2.0",
     "succes-character-create": "^1.0.0"
   }
 }

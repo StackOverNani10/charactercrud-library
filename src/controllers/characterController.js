@@ -1,76 +1,143 @@
 const characterService = require("../services/characterService");
+const prompt = require('prompt-sync')();
 const isGood = require("succes-character-create");
 
-const getAllCharacters = (req, res) => {
-    const allCharacters = characterService.getAllCharacters();
-    res.send({ status: 'OK', data: allCharacters });
+function switchFieldSelected(changeMade) {
+    switch (changeMade) {
+        case "name":
+            const newName = prompt('Escriba el nuevo nombre: ');
+            const Updatedname = {
+                name: newName
+            };
+            return Updatedname;
+        
+        case "surname":
+            const newSurname = prompt('Escriba el nuevo apellido: ');
+            const Updatedsurname = {
+                surname: newSurname
+            };
+            return Updatedsurname;
+
+        case "points":
+            const newPoints = prompt('Escriba el nuevo puntaje: ');
+            const Updatedpoints = {
+                points: newPoints
+            };
+            return Updatedpoints;
+
+        case "skill":
+            const newSkill = prompt('Escriba la habilidad nueva: ');
+            const Updatedskill = {
+                skill: newSkill
+            };
+            return Updatedskill;
+        
+        case "all":
+            const name = prompt('Escriba el nuevo nombre: ');
+            const surname = prompt('Escriba el nuevo apellido: ');
+            const points = prompt('Escriba el nuevo puntaje: ');
+            const skill = prompt('Escriba la habilidad nueva: ');
+            const UpdatedAll = {
+                name: name,
+                surname: surname,
+                points: points,
+                skill: skill
+            };
+            return UpdatedAll;
+
+        default:
+            const defaultMsg = "Introduzca un nombre da campo valido";
+            return defaultMsg;
+    }
 };
 
-const getOneCharacter = (req, res) => {
-    const {
-        params: { characterId },
-    } = req;
+function getAllCharacters() {
+    const allCharacters = characterService.getAllCharacters();
+    console.log({ status: 'OK', data: allCharacters });
+};
+
+function getOneCharacter() {
+    console.clear();
+    const characterId = prompt('Escriba el id del caracter a buscar: ');
 
     if (!characterId) {
         return;
     }
 
     const character = characterService.getOneCharacter(characterId);
-    res.send({ status: "OK", data: character });
+
+    if (character) {
+        console.clear()
+        console.log({ status: "OK", data: character });
+    } else {
+        console.log(`Elemento con id ${characterId} no existe!`);
+    }
 };
 
-const createNewCharacter = (req, res) => {
-    const { body } = req;
+function createNewCharacter() {
+    console.clear();
+    const name = prompt('Escriba el nombre: ');
+
+    const surname = prompt('Escriba el apellido: ');
+
+    const points = prompt('Escriba el puntaje: ');
+
+    const skill = prompt('Escriba la habilidad: ');
 
     if (
-        !body.nombre || 
-        !body.apellido || 
-        !body.puntaje || 
-        !body.habilidad
+        !name || 
+        !surname || 
+        !points || 
+        !skill
     ) {
-        const result = isGood("No Ok");
-        res.send({ status: "No OK", result });
+        console.log({ status: "No OK", msg: "Ingrese todos los campos requeridos" });
         return;
+    } else {
+        const newCharacter = {
+            name: name,
+            surname: surname,
+            points: points,
+            skill: skill
+        };
+        
+        var createdCharacter = characterService.createNewCharacter(newCharacter);
+        console.clear();
+        console.log({ status: "OK", data: createdCharacter });
     }
-
-    const newCharacter = {
-        nombre: body.nombre,
-        apellido: body.apellido,
-        puntaje: body.puntaje,
-        habilidad: body.habilidad
-    };
-
-    const createdCharacter = characterService.createNewCharacter(newCharacter);
-    const result = isGood("OK");
-    res.status(201).send({ status: "OK", result, data: createdCharacter });
 };
 
-const updateOneCharacter = (req, res) => {
-    const { 
-        body, 
-        params: { characterId },
-    } = req;
+function updateOneCharacter() {
+    console.clear();
+    const characterId = prompt('Escriba el id del caracter: ');
 
     if (!characterId) {
-        return;
-    }
+        console.log("Inserte un id");
+    } else {
+        const changeMade = prompt("Escriba el campo que desee cambiar (name | surname | points | skill | all) campo: ");
 
-    const updatedCharacter =  characterService.updateOneCharacter(characterId, body);
-    res.send({ status: "OK", data: updatedCharacter });
+        var newData = switchFieldSelected(changeMade);
+        if (newData != "Introduzca un nombre da campo valido") {
+            const updatedCharacter =  characterService.updateOneCharacter(characterId, newData);
+            console.clear();
+            console.log({ status: "OK", data: updatedCharacter });
+        } else {
+            console.log({ status: "No OK", msg: "Revise el nombre de campo insertado" });
+        }
+        
+    }
 };
 
-const deleteOneCharacter = (req, res) => {
-    const { 
-        body, 
-        params: { characterId },
-    } = req;
+function deleteOneCharacter() {
+    console.clear();
+    const characterId = prompt('Escriba el id del caracter: ');
 
     if (!characterId) {
+        console.log("Inserte un id");
         return;
     }
 
     characterService.deleteOneCharacter(characterId);
-    res.status(204).send({ status: "OK" });
+    console.log({ status: "OK", msg: `Caracter de id ${characterId} eliminado` });
 };
 
 module.exports = {

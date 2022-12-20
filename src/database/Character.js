@@ -18,7 +18,7 @@ const getOneCharacter = (characterId) => {
 const createNewCharacter = (newCharacter) => {
     const isAlreadyAdded = 
     DB.characters.findIndex(
-        (characters) => characters.nombre === newCharacter.nombre) > -1;
+        (characters) => characters.name === newCharacter.name) > -1;
     
     if (isAlreadyAdded) {
         return;

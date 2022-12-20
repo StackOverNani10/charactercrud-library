@@ -1,16 +1,17 @@
 const crypto = require("crypto");
 const Character = require("../database/Character");
 
-const getAllCharacters = () => { 
+function getAllCharacters() { 
    const allCharacters = Character.getAllCharacters();
    return allCharacters;
 };
-const getOneCharacter = (characterId) => { 
+
+function getOneCharacter(characterId) { 
     const character = Character.getOneCharacter(characterId);
     return character; 
 };
 
-const createNewCharacter = (newCharacter) => { 
+function createNewCharacter(newCharacter) { 
     const characterToInsert = {
         id: crypto.randomUUID(),
         ...newCharacter,
@@ -19,11 +20,13 @@ const createNewCharacter = (newCharacter) => {
     const createdCharacter = Character.createNewCharacter(characterToInsert);
     return createdCharacter;
 };
-const updateOneCharacter = (characterId, changes) => { 
+
+function updateOneCharacter(characterId, changes) { 
     const updatedCharacter = Character.updateOneCharacter(characterId, changes);
     return updatedCharacter;
 };
-const deleteOneCharacter = (characterId) => { 
+
+function deleteOneCharacter(characterId) { 
     Character.deleteOneCharacter(characterId); 
 };
 

@@ -1,0 +1,96 @@
+[
+    {
+      "screenName": "mainScreen",
+      "type": "info",
+      "content": {
+          "screenMessage": "Welcome to Main Screen",
+          "actions": [
+          {
+            "name": "Crud of character",
+            "button": "go",
+            "screenName": "crudCharacter"
+          },
+          {
+            "name": "Quit",
+            "button": "q",
+            "screenName": ""
+          }
+        ]
+      }
+    },
+    {
+      "screenName": "crudCharacter",
+      "type": "crud",
+      "content": {
+        "screenMessage": "CRUD character screen",
+        "atribute": "character",
+        "structure": {
+          "_id": 0,
+          "name": "name",
+          "surname": "surname",
+          "points": "points",
+          "skill": "skill"
+        },
+          "actions": [
+            {
+              "name": "Create",
+              "button": "c",
+              "screenName": "crudCharacter"
+            },
+            {
+              "name": "Read",
+              "button": "r",
+              "screenName": "crudCharacter"
+            },
+            {
+              "name": "Update",
+              "button": "u",
+              "screenName": "crudCharacter"
+            },
+            {
+              "name": "Delete",
+              "button": "d",
+              "screenName": "crudCharacter"
+            },
+            {
+              "name": "Back",
+              "button": "b",
+              "screenName": "mainScreen"
+           }
+        ]
+      }
+    },
+    {
+      "screenName": "exitScreen",
+      "type": "info",
+      "content": {
+        "screenMessage": "Thank you for using this console app, come back soon!!",
+        "actions": [
+          {
+            "name": "Press any button to exit!",
+            "button": "",
+            "screenName": ""
+          }
+        ]
+      }
+    },
+    {
+      "screenName": "error404Screen",
+      "type": "info",
+      "content": {
+        "screenMessage": "404: This screen was not found",
+        "actions": [
+          {
+            "name": "Back to main screen",
+            "button": "b",
+            "screenName": "mainScreen"
+          },
+          {
+            "name": "Quit",
+            "button": "",
+            "screenName": ""
+          }
+        ]
+      }
+    }
+  ]

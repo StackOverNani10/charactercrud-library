@@ -2,24 +2,31 @@
   "characters": [
     {
       "id": "se721r77-98yf-x910-9bx2-8cb0x1x9083v",
-      "nombre": "Herald",
-      "apellido": "Jumping",
-      "puntaje": "88",
-      "habilidad": "Super Salto"
+      "name": "Herald",
+      "surname": "Jumping",
+      "points": "88",
+      "skill": "Super Salto"
     },
     {
       "id": "se721r77-98yf-x910-9bx2-8cb0x1x9083v",
-      "nombre": "Marcus",
-      "apellido": "Punch",
-      "puntaje": "86",
-      "habilidad": "Super puño"
+      "name": "Marcus",
+      "surname": "Punch",
+      "points": "86",
+      "skill": "Super puño"
     },
     {
       "id": "c531d0bb-6e58-4611-9516-09f93db5e6fa",
-      "nombre": "Bruno",
-      "apellido": "Pie",
-      "puntaje": "82",
-      "habilidad": "Super patada"
+      "name": "Bruno",
+      "surname": "Pie",
+      "points": "82",
+      "skill": "Super patada"
+    },
+    {
+      "id": "1",
+      "name": "Gerald",
+      "surname": "de Rivia",
+      "points": "95",
+      "skill": "witcher"
     }
   ]
 }

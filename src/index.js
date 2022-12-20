@@ -1,12 +1,8 @@
-const express = require('express');
-const v1CharacterRouter = require("./v1/routes/characterRoutes");
+const jsonChecker = require("./screens/jsonChecker");
+const screenBuilder = require("./screens/screenBuilder");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(express.json());
-app.use("/api/v1/characters", v1CharacterRouter);
-
-app.listen(PORT, () => { 
-    console.log(`🚀 Server listening on port ${PORT}`); 
-});
+module.exports.screenBuilder = (activeScreenName) => {
+  if (jsonChecker()) {
+    screenBuilder(activeScreenName);
+  }
+};

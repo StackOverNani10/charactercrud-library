@@ -4,7 +4,7 @@
 
 <br>
 
-Esta api te permite crear, leer, actualizar y eliminar caracteres con 
+Esta app te permite crear, leer, actualizar y eliminar caracteres con 
 desterminados atributos. Contiene una base de datos local en formato json
 con el nombre (db.json).
 
@@ -12,29 +12,6 @@ con el nombre (db.json).
 
 ## 📒 Ejemplo de uso
 ```
-###
-POST http://localhost:3000/api/v1/characters
-Content-Type: application/json
 
-{
-    "nombre": "Bruno",
-    "apellido": "Pie",
-    "puntaje": "82",
-    "habilidad": "Super patada"
-}
-
-###
-GET http://localhost:3000/api/v1/characters
-
-###
-PATCH  http://localhost:3000/api/v1/characters/{id}
-Content-Type: application/json
-
-{
-    "nombre": "Herald"
-}
-
-###
-DELETE http://localhost:3000/api/v1/characters/{id}
 
 ```
