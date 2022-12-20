@@ -77,11 +77,8 @@ function getOneCharacter() {
 function createNewCharacter() {
     console.clear();
     const name = prompt('Escriba el nombre: ');
-
     const surname = prompt('Escriba el apellido: ');
-
     const points = prompt('Escriba el puntaje: ');
-
     const skill = prompt('Escriba la habilidad: ');
 
     if (

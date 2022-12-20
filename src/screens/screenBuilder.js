@@ -30,10 +30,6 @@ function showScreen(screenName) {
     showInfoScreen(screenToShow);
     return;
   }
-  if (type === "get") {
-    showGetScreen(screenToShow);
-    return;
-  }
   if (type === "crud") {
     showCrudScreen(screenToShow);
     return;
@@ -62,7 +58,6 @@ function transferToScreen(actions, content) {
   let crudButtons = [];
   showOptions(actions);
 
-  //Detect available buttons of crud
   actions.forEach((element) => {
     if (["c", "r", "u", "d"].includes(element.button)) {
       crudButtons.push(element.button);
@@ -76,12 +71,10 @@ function transferToScreen(actions, content) {
     return;
   }
 
-  //Exit if pressed q
   if (input == "q") {
     exitProgram();
     return;
   } else {
-    //Call screen
     actions.forEach((element) => {
       console.log(element);
 
@@ -102,18 +95,6 @@ function transferToScreen(actions, content) {
 }
 
 function showInfoScreen(screenToShow) {
-  //Define screen parts
-  const { content } = screenToShow;
-  const { screenMessage } = content;
-  const { actions } = content;
-
-  console.log(screenMessage);
-
-  transferToScreen(actions, content);
-}
-
-function showGetScreen(screenToShow) {
-  //Define screen parts
   const { content } = screenToShow;
   const { screenMessage } = content;
   const { actions } = content;
@@ -124,7 +105,6 @@ function showGetScreen(screenToShow) {
 }
 
 function showCrudScreen(screenToShow) {
-  //Define screen parts
   const { content } = screenToShow;
   const { screenMessage } = content;
   const { actions } = content;
@@ -175,7 +155,6 @@ function crudManager(input, content) {
     prompt("Press enter to continue.");
   }
 
-  //Show next screen
   actions.forEach((element) => {
     if (element.button == input) {
         showScreen(element.screenName);

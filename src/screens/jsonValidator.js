@@ -1,9 +1,7 @@
 const fs = require("fs");
-const { callbackify } = require("util");
 const prompt = require("prompt-sync")();
 
 var dataJSON = fs.readFileSync(`${__dirname}/screenConfigFile.json`);
-// var config = JSON.parse(dataJSON);
 
 function exitProgram() {
   process.on("exit", function (code) {
@@ -14,9 +12,9 @@ function exitProgram() {
 function isJsonString() {
   try {
     config = JSON.parse(dataJSON);
-  } catch (e) {
+  } catch (error) {
     console.log("JSON structure is invalid");
-    console.log(e);
+    console.log(error);
     return false;
   }
   return true;
@@ -24,7 +22,7 @@ function isJsonString() {
 
 module.exports = () => {
   const isJsonValid = isJsonString();
-  console.log("\033[2J");
+  console.clear();
 
   let screenNames = [];
   let errorEncountred = false;
@@ -35,16 +33,16 @@ module.exports = () => {
     return false;
   }
 
-  config.forEach((e) => {
-    if (e.screenName) {
-      screenNames.push(e.screenName);
+  config.forEach((item) => {
+    if (item.screenName) {
+      screenNames.push(item.screenName);
     }
   });
   screenNames.push("");
 
   config.forEach((e, index) => {
     let screenName = "";
-    //Check if have name:
+    
     if (!e.screenName) {
       console.log(`ERROR: Screen number ${index + 1} does not have a name`);
       screenName = `Screen ${index + 1}`;
@@ -52,16 +50,14 @@ module.exports = () => {
     } else {
       screenName = e.screenName;
     }
-    //
 
-    //Check if type exists
     const validTypes = ["info", "crud"];
 
     if (!e.type) {
       console.log(`ERROR: Screen ${screenName} does not have a type`);
       errorEncountred = true;
     } else {
-      //Check if type is valid
+      
       if (!validTypes.includes(e.type)) {
         console.log(
           `ERROR: Type of ${screenName} "${e.type}" is not correct. It should be one of this: ${validTypes}`
@@ -70,12 +66,12 @@ module.exports = () => {
       }
     }
 
-    //CHeck if content exists
+    
     if (!e.content) {
       console.log(`ERROR: Screen ${screenName} does not have a content`);
       errorEncountred = true;
     } else {
-      //Check if screenMessage is in content
+      
       if (!e.content.screenMessage) {
         console.log(
           `ERROR: Inside the content of ${screenName} does not appear screen message "screenMessage":`
@@ -123,7 +119,7 @@ module.exports = () => {
 
           elements = [];
 
-          //Check if screen name is defined
+          
           if (!screenNames.includes(e.screenName)) {
             console.log(
               `ERROR: Inside the action N. ${
@@ -140,7 +136,7 @@ module.exports = () => {
       }
     }
 
-    //content
+    
   });
   if (errorEncountred) {
     exitProgram();
@@ -149,8 +145,3 @@ module.exports = () => {
   }
   return true;
 };
-//Screen does not have some component
-
-//Redirects to screen which does not exist
-
-//type is written incorrectly

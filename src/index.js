@@ -1,8 +1,9 @@
-const jsonChecker = require("./screens/jsonChecker");
+//const jsonValidator = require("./screens/jsonValidator");
 const screenBuilder = require("./screens/screenBuilder");
 
 module.exports.screenBuilder = (activeScreenName) => {
-  if (jsonChecker()) {
-    screenBuilder(activeScreenName);
-  }
+  //if (jsonValidator()) {
+  //  screenBuilder(activeScreenName);
+  //}
+  screenBuilder(activeScreenName);
 };
