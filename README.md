@@ -13,19 +13,19 @@ with certain attributes. Contains a local database in json format with the name
 For installing de library charactercrud-library on your proyect, you have to 
 run the next npm command:
 ```
-npm install charactercrud-library
+npm install @stackovernani/charactercrud-library
 
 ```
 You can also put:
 ```
-npm i charactercrud-library
+npm i @stackovernani/charactercrud-library
 
 ```
 ## 📒 Ejemplo de uso
 You have to put this code block below to run the library:
 
 ```
-const sh = require("charactercrud-library");
+const sh = require("@stackovernani/charactercrud-library");
 
 sh.screenManager("mainScreen");
 
