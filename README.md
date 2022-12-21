@@ -27,10 +27,10 @@ You have to put this code block below to run the library:
 ```
 const sh = require("charactercrud-library");
 
-sh.screenBuilder("mainScreen");
+sh.screenManager("mainScreen");
 
 ```
-Screen Builder recieves name of main screen as a parameter, so, you need to 
+screenManager recieves name of main screen as a parameter, so, you need to 
 write a correct name to make it work.
 
 ## Documentation

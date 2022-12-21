@@ -162,6 +162,6 @@ function crudManager(input, content) {
   });
 }
 
-module.exports = function screenBuilder(activeScreenName) {
+module.exports = function screenManager(activeScreenName) {
     showScreen(activeScreenName);
 };

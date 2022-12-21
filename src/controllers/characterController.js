@@ -1,6 +1,5 @@
 const characterService = require("../services/characterService");
 const prompt = require('prompt-sync')();
-const isGood = require("succes-character-create");
 
 function switchFieldSelected(changeMade) {
     switch (changeMade) {
