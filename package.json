@@ -1,12 +1,12 @@
 {
   "name": "@stackovernani/charactercrud-library",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "node ./client/test.js",
+    "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./client/test.js"
   },
   "keywords": [],
   "author": "Daniel Domínguez",

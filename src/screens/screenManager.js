@@ -1,6 +1,6 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
-const characterControlers = require("../controllers/characterController");
+const characterControlers = require("../../../../../src/controllers/characterController");
 
 var dataJSON = fs.readFileSync(`${__dirname}/screenConfigFile.json`);
 var config = JSON.parse(dataJSON);
