@@ -1,7 +1,7 @@
 {
   "name": "@stackovernani/charactercrud-library",
-  "version": "2.0.0",
-  "description": "",
+  "version": "2.2.0",
+  "description": "[Por Daniel Domínguez](https://www.linkedin.com/in/daniel-domínguez-pimentel-818306198/)",
   "main": "./src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
@@ -16,5 +16,13 @@
   },
   "dependencies": {
     "prompt-sync": "^4.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StackOverNani10/CharacterCRUD-API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/StackOverNani10/CharacterCRUD-API/issues"
+  },
+  "homepage": "https://github.com/StackOverNani10/CharacterCRUD-API#readme"
 }

@@ -6,8 +6,7 @@
 
 This library allows you to interact with a JSON that contains the configuration 
 of each screen used in the CRUD (create, read, update and delete) of characters 
-with certain attributes. Contains a local database in json format with the name 
-(db.json).
+with certain attributes. 
 
 ## Installation
 For installing de library charactercrud-library on your proyect, you have to 
@@ -21,17 +20,30 @@ You can also put:
 npm i @stackovernani/charactercrud-library
 
 ```
-## 📒 Ejemplo de uso
+## 📒 Usage example
 You have to put this code block below to run the library:
 
 ```
-const sh = require("@stackovernani/charactercrud-library");
+const sM = require("@stackovernani/charactercrud-library");
 
-sh.screenManager("mainScreen");
+sM.screenManager("mainScreen");
 
 ```
 screenManager recieves name of main screen as a parameter, so, you need to 
 write a correct name to make it work.
+
+## Extentions
+
+This library has 1 point of extention, using this extension point allows you to 
+customize your program so that you can obtain a history of the executions carried out on it.
+
+If you want to run this extension you must place the following block of code:
+
+```
+sM.screenManager("mainScreen", { getHistoric: true });
+
+```
+By placing (getHistoric: true) we tell the program to execute the function created for this extension.
 
 ## Documentation
 This library uses the following JSON type base structure, which all screens 
