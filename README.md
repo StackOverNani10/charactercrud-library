@@ -19,6 +19,19 @@ You can also put:
 npm i @stackovernani/charactercrud-library
 
 ```
+
+## 🚨Important❗
+
+In your program you have to create a basic crud application and for the controllers you have to create a folder with the name "controllers" and inside a file with the name "characterControllers" where all the functions are.
+
+Also the name of the crud functions has to be like this:
+- **getOneCharacter**
+- **createNewCharacter**
+- **updateOneCharacter**
+- **deleteOneCharacter**
+
+if you want to modify one of those you have to make it by your self inside the (node_modules\@stackovernani\charactercrud-library).
+
 ## 📒 Usage example
 You have to put this code block below to run the library:
 
@@ -32,8 +45,13 @@ screenManager recieves name of main screen as a parameter, so, you need to
 write a correct name to make it work.
 
 ## Extentions
-This library has 1 point of extention, using this extension point allows you to 
-customize your program so that you can obtain a history of the executions carried out on it.
+This library has different extension points, using these extension points 
+allows you to customize your program according to what you want to achieve.
+
+- getHistoric extension
+
+With this first extension you will be able to obtain a history of the 
+executions carried out on it.
 
 If you want to run this extension you must place the following block of code:
 
@@ -41,7 +59,36 @@ If you want to run this extension you must place the following block of code:
 sM.screenManager("mainScreen", { getHistoric: true });
 
 ```
-By placing (getHistoric: true) we tell the program to execute the function created for this extension.
+By placing (getHistoric: true) we tell the program to execute the function 
+created for this extension.
+
+- colorTerminal extension
+
+With this extension you will be able to color the main messages that your 
+console displays.
+
+If you want to run this extension you must place the following block of code:
+
+```javascript
+sM.screenManager("mainScreen", { colorTerminal: true });
+
+```
+By placing (colorTerminal: true) we tell the program to execute the function 
+created for this extension.
+
+- upperCase extension
+
+With this extension you will be able to capitalize all the letters of the 
+main messages that your console displays.
+
+If you want to run this extension you must place the following block of code:
+
+```javascript
+sM.screenManager("mainScreen", { upperCase: true });
+
+```
+By placing (upperCase: true) we tell the program to execute the function 
+created for this extension.
 
 ## Documentation
 This library uses the following JSON type base structure, which all screens 

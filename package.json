@@ -1,6 +1,6 @@
 {
   "name": "@stackovernani/charactercrud-library",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "[Por Daniel Domínguez](https://www.linkedin.com/in/daniel-domínguez-pimentel-818306198/)",
   "main": "./src/index.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+    "chalk": "^4.1.2",
     "prompt-sync": "^4.2.0"
   },
   "repository": {

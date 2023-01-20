@@ -13,6 +13,7 @@
 
 const fs = require("fs");
 const prompt = require("prompt-sync")();
+const chalk = require("chalk");
 
 /**
  * Required files
@@ -33,8 +34,8 @@ exports.screenManager = screenManager;
  * screenManager("mainScreen", { getHistoric: true })
  *   => "show The Screen; run getHistoric function"
  *
- * @param {string} activeScreenName
- * @param {object} [options]
+ * @param {("mainScreen" | "crudCharacter" | "exitScreen" | "error404Screen")} activeScreenName - Name of the first screen you want to show
+ * @param {{ getHistoric: true, colorTerminal: true }} [options] - You can activate the different Extension by putting -> (Extension name): true
  * @return {object}
  * @public
  */
@@ -50,10 +51,17 @@ function screenManager(activeScreenName, options) {
     throw new TypeError('option is invalid');
   }
 
- showScreen(activeScreenName);
-  
   /**
-   * first extention
+   *  first extention
+   */
+  if (opt.colorTerminal) {
+    showScreen(activeScreenName, { colorTerminal: true });
+  } else {
+    showScreen(activeScreenName);
+  }
+
+  /**
+   * second extention
    */
   if (opt.getHistoric) {
     var today = new Date();
@@ -76,13 +84,22 @@ function screenManager(activeScreenName, options) {
       }
     });
   }
+
+  /**
+   * third extention
+   */
+  if (opt.upperCase) {
+    showScreen(activeScreenName, { upperCase: true });
+  } else {
+    showScreen(activeScreenName);
+  }
 };
 
 /**
  * 
  * Param for getScreenToShow function.
  * 
- * @param {*} screenName 
+ * @param {string} screenName 
  * @returns 
  */
 
@@ -103,15 +120,33 @@ function getScreenToShow(screenName) {
  * 
  * Param for showScreen function.
  * 
- * @param {*} screenName 
+ * @param {string} screenName 
+ * @param {object} options 
  * @returns 
  */
 
-function showScreen(screenName) {
+function showScreen(screenName, options) {
   console.clear();
   const screenToShow = getScreenToShow(screenName);
   const { type } = screenToShow;
+  var opt = options || {};
 
+  if (opt.upperCase && type === "info") {
+    showInfoScreen(screenToShow, { upperCase: true });
+    return;
+  }
+  if (opt.upperCase && type === "crud") {
+    showCrudScreen(screenToShow, { upperCase: true });
+    return;
+  }
+  if (opt.colorTerminal && type === "info") {
+    showInfoScreen(screenToShow, { colorTerminal: true });
+    return;
+  }
+  if (opt.colorTerminal && type === "crud") {
+    showCrudScreen(screenToShow, { colorTerminal: true });
+    return;
+  }
   if (type === "info") {
     showInfoScreen(screenToShow);
     return;
@@ -126,11 +161,21 @@ function showScreen(screenName) {
  * 
  * Param for showOptions function.
  * 
- * @param {*} actions 
+ * @param {string} actions 
+ * @param {object} options 
  */
 
-function showOptions(actions) {
-  console.log("Go to next screen: ");
+function showOptions(actions, options) {
+  var opt = options || {};
+  if (opt.colorTerminal){
+    console.log(chalk.red.bold("Go to next screen: "));
+  } else {
+    if (opt.upperCase){
+      console.log("Go to next screen: ".toUpperCase());
+    } else{
+      console.log("Go to next screen: ");
+    }
+  }
 
   //Show possible actions
   actions.forEach((element) => {
@@ -140,12 +185,23 @@ function showOptions(actions) {
 
 /**
  * 
- * exitProgram function.
+ * Param for exitProgram function.
+ * 
+ * @param {object} options 
  */
 
-function exitProgram() {
+function exitProgram(options) {
+  var opt = options || {};
   process.on("exit", function (code) {
-    showScreen("exitScreen");
+    if (opt.colorTerminal) {
+      showScreen("exitScreen", { colorTerminal: true });
+    } else {
+      if (opt.upperCase){
+        showScreen("exitScreen", { upperCase: true });
+      } else {
+        showScreen("exitScreen");
+      }
+    }
 
     return console.log(`Process to exit with code ${code}`);
   });
@@ -157,13 +213,25 @@ function exitProgram() {
  * 
  * @param {*} actions 
  * @param {*} content 
+ * @param {object} options 
  * @returns 
  */
 
-function transferToScreen(actions, content) {
+function transferToScreen(actions, content, options) {
   let screenFound = false;
   let crudButtons = [];
-  showOptions(actions);
+  var opt = options || {};
+
+  if (opt.colorTerminal){
+    showOptions(actions, { colorTerminal: true });
+  } else {
+    showOptions(actions);
+  }
+  if (opt.upperCase){
+    showOptions(actions, { upperCase: true });
+  } else {
+    showOptions(actions);
+  }
 
   actions.forEach((element) => {
     if (["c", "r", "u", "d"].includes(element.button)) {
@@ -174,12 +242,28 @@ function transferToScreen(actions, content) {
   const inputVal = prompt("Go to: ");
 
   if (crudButtons.includes(inputVal)) {
-    crudManager(inputVal, content);
+    if (opt.colorTerminal){
+      crudManager(inputVal, content, { colorTerminal: true });
+    } else {
+      if (opt.upperCase){
+        crudManager(inputVal, content, { upperCase: true });
+      } else {
+        crudManager(inputVal, content);
+      }
+    }
     return;
   }
 
   if (inputVal == "q") {
-    exitProgram();
+    if (opt.colorTerminal) {
+      exitProgram({ colorTerminal: true });
+    } else {
+      if (opt.upperCase){
+        exitProgram({ upperCase: true });
+      } else {
+        exitProgram();
+      }
+    }
     return;
   } else {
     actions.forEach((element) => {
@@ -188,14 +272,30 @@ function transferToScreen(actions, content) {
       if (element.button == inputVal) {
         var nextScreenToShow = element.screenName;
         console.log(nextScreenToShow);
-        showScreen(nextScreenToShow);
+        if (opt.colorTerminal) {
+          showScreen(nextScreenToShow, { colorTerminal: true });
+        } else {
+          if (opt.upperCase){
+            showScreen(nextScreenToShow, { upperCase: true });
+          } else {
+            showScreen(nextScreenToShow);
+          }
+        }
         screenFound = true;
         return;
       }
     });
 
     if (!screenFound) {
-        showScreen("error404Screen");
+      if (opt.colorTerminal) {
+        showScreen("error404Screen", { colorTerminal: true });
+      } else {
+        if (opt.upperCase){
+          showScreen("error404Screen", { upperCase: true });
+        } else {
+          showScreen("error404Screen");
+        }
+      }
       return;
     }
   }
@@ -205,46 +305,70 @@ function transferToScreen(actions, content) {
  * 
  * Param for showInfoScreen function.
  * 
- * @param {*} screenToShow 
+ * @param {string} screenToShow 
+ * @param {object} options 
  */
 
-function showInfoScreen(screenToShow) {
+function showInfoScreen(screenToShow, options) {
   const { content } = screenToShow;
   const { screenMessage } = content;
   const { actions } = content;
+  var opt = options || {};
 
-  console.log(screenMessage);
-
-  transferToScreen(actions, content);
+  if (opt.colorTerminal){
+    console.log(chalk.red.bold(screenMessage));
+    transferToScreen(actions, content, { colorTerminal: true });
+  } else {
+    if (opt.upperCase){
+      console.log(screenMessage.toUpperCase());
+      transferToScreen(actions, content, { upperCase: true });
+    } else {
+      console.log(screenMessage);
+      transferToScreen(actions, content);
+    }
+  }
 }
 
 /**
  * 
  * Param for showCrudScreen function.
  * 
- * @param {*} screenToShow 
+ * @param {string} screenToShow 
+ * @param {object} options 
  */
 
-function showCrudScreen(screenToShow) {
+function showCrudScreen(screenToShow, options) {
   const { content } = screenToShow;
   const { screenMessage } = content;
   const { actions } = content;
+  var opt = options || {};
 
-  console.log(screenMessage);
-
-  transferToScreen(actions, content);
+  if (opt.colorTerminal){
+    console.log(chalk.red.bold(screenMessage));
+    transferToScreen(actions, content, { colorTerminal: true });
+  } else {
+    if (opt.upperCase){
+      console.log(screenMessage.toUpperCase());
+      transferToScreen(actions, content, { upperCase: true });
+    } else {
+      console.log(screenMessage);
+      transferToScreen(actions, content);
+    }
+  }
 }
 
 /**
  * 
  * Param for crudManager function.
  * 
- * @param {*} inputVal 
+ * @param {string} inputVal 
  * @param {*} content 
+ * @param {object} options 
  */
 
-function crudManager(inputVal, content) {
+function crudManager(inputVal, content, options) {
   const { actions } = content;
+  var opt = options || {};
 
   if (inputVal === "c") {
     characterControlers.createNewCharacter();
@@ -273,7 +397,15 @@ function crudManager(inputVal, content) {
 
   actions.forEach((element) => {
     if (element.button == inputVal) {
-        showScreen(element.screenName);
+      if (opt.colorTerminal){
+        showScreen(element.screenName, { colorTerminal: true });
+      } else {
+        if (opt.upperCase){
+          showScreen(element.screenName, { upperCase: true });
+        } else {
+          showScreen(element.screenName);
+        }
+      }
     }
   });
 }
