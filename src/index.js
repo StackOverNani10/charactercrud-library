@@ -57,11 +57,18 @@ function screenManager(activeScreenName, options) {
   if (opt.colorTerminal) {
     showScreen(activeScreenName, { colorTerminal: true });
   } else {
-    showScreen(activeScreenName);
+    /**
+   * second extention
+   */
+    if (opt.upperCase) {
+      showScreen(activeScreenName, { upperCase: true });
+    } else {
+      showScreen(activeScreenName);
+    }
   }
 
   /**
-   * second extention
+   * third extention
    */
   if (opt.getHistoric) {
     var today = new Date();
@@ -83,15 +90,6 @@ function screenManager(activeScreenName, options) {
         });
       }
     });
-  }
-
-  /**
-   * third extention
-   */
-  if (opt.upperCase) {
-    showScreen(activeScreenName, { upperCase: true });
-  } else {
-    showScreen(activeScreenName);
   }
 };
 
