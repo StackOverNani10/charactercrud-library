@@ -129,29 +129,33 @@ function showScreen(screenName, options) {
   const { type } = screenToShow;
   var opt = options || {};
 
-  if (opt.upperCase && type === "info") {
-    showInfoScreen(screenToShow, { upperCase: true });
+  if (opt.colorTerminal && type === "crud") {
+    showCrudScreen(screenToShow, { colorTerminal: true });
     return;
-  }
-  if (opt.upperCase && type === "crud") {
-    showCrudScreen(screenToShow, { upperCase: true });
-    return;
+  } else {
+    if (opt.upperCase && type === "crud") {
+      showCrudScreen(screenToShow, { upperCase: true });
+      return;
+    } else {
+      if (type === "crud") {
+        showCrudScreen(screenToShow);
+        return;
+      }
+    }
   }
   if (opt.colorTerminal && type === "info") {
     showInfoScreen(screenToShow, { colorTerminal: true });
     return;
-  }
-  if (opt.colorTerminal && type === "crud") {
-    showCrudScreen(screenToShow, { colorTerminal: true });
-    return;
-  }
-  if (type === "info") {
-    showInfoScreen(screenToShow);
-    return;
-  }
-  if (type === "crud") {
-    showCrudScreen(screenToShow);
-    return;
+  } else {
+    if (opt.upperCase && type === "info") {
+      showInfoScreen(screenToShow, { upperCase: true });
+      return;
+    } else {
+      if (type === "info") {
+        showInfoScreen(screenToShow);
+        return;
+      }
+    }
   }
 }
 
@@ -223,12 +227,11 @@ function transferToScreen(actions, content, options) {
   if (opt.colorTerminal){
     showOptions(actions, { colorTerminal: true });
   } else {
-    showOptions(actions);
-  }
-  if (opt.upperCase){
-    showOptions(actions, { upperCase: true });
-  } else {
-    showOptions(actions);
+    if (opt.upperCase){
+      showOptions(actions, { upperCase: true });
+    } else {
+      showOptions(actions);
+    }
   }
 
   actions.forEach((element) => {

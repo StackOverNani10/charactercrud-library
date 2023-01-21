@@ -1,6 +1,6 @@
 {
   "name": "@stackovernani/charactercrud-library",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "[Por Daniel Domínguez](https://www.linkedin.com/in/daniel-domínguez-pimentel-818306198/)",
   "main": "./src/index.js",
   "scripts": {
